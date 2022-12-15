@@ -1,4 +1,5 @@
 const express = require('express');
+const {rejectUnauthenticated,} = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 const {rejectUnauthenticated} = require('../modules/authentication-middleware');
@@ -7,8 +8,15 @@ const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 /**
  * Get all of the items on the shelf
  */
-router.get('/', (req, res) => {
-  res.sendStatus(200); // For testing only, can be removed
+router.get('/', rejectUnauthenticated, (req, res) => {
+  const queryText = `SELECT * FROM "item";`;
+  pool.query(queryText).then((results) => {
+    res.send(results.rows);
+    // res.sendStatus(200);
+  }).catch((error) =>{
+    console.log('Error with getting all items:', error);
+    res.sendStatus(500);
+  });
 });
 
 /**
