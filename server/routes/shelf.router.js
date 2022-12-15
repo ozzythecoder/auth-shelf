@@ -1,8 +1,7 @@
 const express = require('express');
-const {rejectUnauthenticated,} = require('../modules/authentication-middleware');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
-const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
 
 /**
@@ -13,7 +12,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   pool.query(queryText).then((results) => {
     res.send(results.rows);
     // res.sendStatus(200);
-  }).catch((error) =>{
+  }).catch((error) => {
     console.log('Error with getting all items:', error);
     res.sendStatus(500);
   });
@@ -26,18 +25,17 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   // endpoint functionality
   console.log('in POST!');
   console.log('is authenticated?', req.isAuthenticated());
-  const queryText = `INSERT INTO "item" ("description","image_url","user_id")`;
+  const queryText = `
+    INSERT INTO "item" ("description","image_url","user_id")
+    VALUES ($1, $2, $3);
+  `;
   pool
-  .query(queryText, [req.body.description, req.body.image_url, req.user.id])
-  .then(() => res.sendStatus(201))
-  .catch((err) => {
-    console.log('POST to items failed: ', err);
-    res.sendStatus(500);
-  });
-
-
-
-
+    .query(queryText, [req.body.description, req.body.image_url, req.user.id])
+    .then(() => res.sendStatus(201))
+    .catch((err) => {
+      console.log('POST to items failed: ', err);
+      res.sendStatus(500);
+    });
 
 });
 
