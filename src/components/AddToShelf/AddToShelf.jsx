@@ -8,7 +8,11 @@ export default function AddToShelf (){
     const [imageUrlIn, setImageUrlIn] = useState('');
 
 
-    // function 
+    function handleSubmit (event) {
+        event.preventDefault();
+        console.log('in handleSubmit!', descriptionIn, imageUrlIn);
+
+    }
 
 
     return (
@@ -17,7 +21,7 @@ export default function AddToShelf (){
             <form>
                 <input placeholder="Description" value={descriptionIn} onChange={event => setDescriptionIn(event.target.value)}/>
                 <input placeholder="Image URL" value={imageUrlIn} onChange={event => setImageUrlIn(event.target.value)}/>
-                <button type="submit">Submit Book</button>
+                <button type="submit" onClick={handleSubmit}>Submit Book</button>
 
 
 
