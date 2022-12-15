@@ -1,6 +1,8 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {rejectUnauthenticated} = require('../modules/authentication-middleware');
+
 
 /**
  * Get all of the items on the shelf
@@ -12,8 +14,23 @@ router.get('/', (req, res) => {
 /**
  * Add an item for the logged in user to the shelf
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   // endpoint functionality
+  console.log('in POST!');
+  console.log('is authenticated?', req.isAuthenticated());
+  const queryText = `INSERT INTO "item" ("description","image_url","user_id")`;
+  pool
+  .query(queryText, [req.body.description, req.body.image_url, req.user.id])
+  .then(() => res.sendStatus(201))
+  .catch((err) => {
+    console.log('POST to items failed: ', err);
+    res.sendStatus(500);
+  });
+
+
+
+
+
 });
 
 /**

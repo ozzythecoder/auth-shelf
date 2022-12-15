@@ -19,6 +19,7 @@ import ShelfPage from '../ShelfPage/ShelfPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import AddToShelf from '../AddToShelf/AddToShelf';
 
 import './App.css';
 
@@ -66,6 +67,14 @@ function App() {
             path="/shelf"
           >
             <ShelfPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Add To Shelf (POST) else shows LoginPage
+            exact
+            path="/addToShelf"
+          >
+            <AddToShelf />
           </ProtectedRoute>
 
           <Route
