@@ -10,7 +10,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `SELECT * FROM "item";`;
   pool.query(queryText).then((results) => {
     res.send(results.rows);
-    res.sendStatus(200);
+    // res.sendStatus(200);
   }).catch((error) =>{
     console.log('Error with getting all items:', error);
     res.sendStatus(500);
