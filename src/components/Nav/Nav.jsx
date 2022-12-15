@@ -27,6 +27,9 @@ function Nav() {
             <Link className="navLink" to="/shelf">
               The Shelf
             </Link>
+            <Link className="navLink" to="/addToShelf">
+              Add Item
+            </Link>
             <LogOutButton className="navLink" />
           </>
         )}

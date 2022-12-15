@@ -42,7 +42,7 @@ export default function AddToShelf() {
   }
 
   return (
-    <div className="addToShelf">
+    <div className="container">
       <h2>ADD A NEW ITEM TO THE SHELF</h2>
       
       <form>
