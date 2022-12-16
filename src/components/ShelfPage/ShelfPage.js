@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-
+import './ShelfPage.css'
 
 function ShelfPage() {
   
@@ -22,19 +22,39 @@ function ShelfPage() {
   return (
     <div className="container">
       <h2>Shelf</h2>
-      {shelfItems.map((item)=>{
-        return (
-          <div key={item.id}>
-            <p>{item.description}</p>
-            <img src={item.image_url} />
-            <button
-              onClick={() => handleDelete(item.id)}
-              >
-              Delete Item
-            </button>
-          </div>
-        )
-  })}
+      <table>
+        <thead>
+          <tr>
+            <th>
+            </th>
+
+            <th>
+            </th>
+            
+            <th>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {shelfItems.map((item)=>{
+            return (
+              <tr 
+                key={item.id}>
+                <td>{item.description}</td>
+                <td className='image-cell'><img src={item.image_url} /></td>
+                
+                <td>
+                  <button
+                  onClick={() => handleDelete(item.id)}
+                  >
+                    Delete Item
+                  </button>
+                </td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }
