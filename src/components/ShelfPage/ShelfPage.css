@@ -1,0 +1,17 @@
+table {
+  margin: 0 auto;
+  gap: none;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+td {
+  padding: 10px;
+  min-width: 100px;
+  border: 1px solid lightgray;
+}
+
+
+.image-cell {
+  max-width: 250px;
+}
