@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* deleteItem(action) {
   try {
-    yield axios.delete('/api/shelf' + action.payload.id)
+    yield axios.delete('/api/shelf/' + action.payload.id)
   } catch (err) {
     alert('Error deleting item from database. Please try again later.')
   }

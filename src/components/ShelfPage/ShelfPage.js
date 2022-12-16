@@ -15,6 +15,7 @@ function ShelfPage() {
 
   const handleDelete = (idToDelete) => {
     console.log(idToDelete)
+    dispatch({ type: 'DELETE_ITEM', payload: { id: idToDelete } })
   }
 
   
