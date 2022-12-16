@@ -46,9 +46,7 @@ router.delete('/:id', (req, res) => {
   // endpoint functionality
   console.log('in /shelf delete');
 
-  const queryText = `
-    DELETE FROM "item" WHERE id = $1
-  `
+  const queryText = `DELETE FROM "item" WHERE id = $1;`
 
   pool.query(queryText, [req.params.id])
     .then(() => res.sendStatus(200))
