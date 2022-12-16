@@ -44,6 +44,19 @@ router.post('/', rejectUnauthenticated, (req, res) => {
  */
 router.delete('/:id', (req, res) => {
   // endpoint functionality
+  console.log('in /shelf delete');
+
+  const queryText = `
+    DELETE FROM "item" WHERE id = $1
+  `
+
+  pool.query(queryText, [req.params.id])
+    .then(() => res.sendStatus(200))
+    .catch(error => {
+      console.log('Failed to delete iitem', req.params.id);
+      console.log(error);
+      res.sendStatus(500);
+    })
 });
 
 /**
