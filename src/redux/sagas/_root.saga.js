@@ -4,6 +4,7 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import fetchItemsSaga from './fetch.items.saga';
 import postItemsSaga from './post.items.saga';
+import deleteSaga from './delete.items.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -18,6 +19,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     fetchItemsSaga(),
-    postItemsSaga()
+    postItemsSaga(),
+    deleteSaga()
   ]);
 }
